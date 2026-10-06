@@ -520,16 +520,415 @@ body.light-mode .honors-panel {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
 }
 
-
 /* =========================================================
-   MOBILE
+   MOBILE NAVIGATION + RESPONSIVE LAYOUT
    ========================================================= */
 
 @media (max-width: 900px) {
 
+    /* =========================
+       NAVBAR
+       ========================= */
+
+    .navbar {
+        height: 74px;
+        padding: 0 18px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .logo {
+        width: 100px;
+        height: 48px;
+    }
+
+    .logo img {
+        width: 82px;
+        height: 38px;
+    }
+
+    /* Theme button */
     .theme-toggle {
+        width: 40px;
+        height: 40px;
         margin-left: auto;
-        margin-right: 12px;
+        margin-right: 10px;
+        flex-shrink: 0;
+    }
+
+    /* Hamburger */
+    .menu-btn {
+        width: 42px;
+        height: 42px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border: 1px solid var(--line);
+        background: var(--surface);
+        color: var(--text);
+
+        font-size: 24px;
+        line-height: 1;
+
+        cursor: pointer;
+        flex-shrink: 0;
+
+        transition:
+            background-color .25s ease,
+            border-color .25s ease,
+            color .25s ease;
+    }
+
+    .menu-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+    }
+
+
+    /* =========================
+       MOBILE MENU
+       ========================= */
+
+    nav {
+        display: none;
+
+        position: absolute;
+        top: 74px;
+        left: 0;
+        right: 0;
+
+        width: 100%;
+
+        flex-direction: column;
+        gap: 0;
+
+        padding: 8px 18px 18px;
+
+        background: rgba(9, 10, 12, .98);
+        border-bottom: 1px solid var(--line);
+
+        backdrop-filter: blur(18px);
+
+        z-index: 999;
+    }
+
+    nav.show {
+        display: flex;
+    }
+
+    nav a {
+        width: 100%;
+
+        padding: 16px 4px;
+
+        border-bottom: 1px solid var(--line);
+
+        font-size: 11px;
+        letter-spacing: 1.5px;
+
+        color: var(--text-secondary);
+    }
+
+    nav a:last-child {
+        border-bottom: none;
+    }
+
+    nav a:hover,
+    nav a.active {
+        color: var(--accent);
+    }
+
+    nav a.active::after {
+        display: none;
+    }
+
+
+    /* =========================
+       HERO
+       ========================= */
+
+    .hero {
+        width: 100%;
+
+        grid-template-columns: 1fr;
+
+        gap: 55px;
+
+        padding: 55px 18px 60px;
+
+        align-items: start;
+    }
+
+    .hero-content {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .location {
+        font-size: 9px;
+        letter-spacing: 1.5px;
+
+        line-height: 1.7;
+
+        margin-bottom: 28px;
+    }
+
+    h1 {
+        font-size: clamp(58px, 18vw, 92px);
+
+        line-height: .84;
+
+        letter-spacing: -5px;
+
+        margin-left: -3px;
+
+        max-width: 100%;
+    }
+
+    h1 span {
+        -webkit-text-stroke: 1.5px #d7d7d4;
+    }
+
+    .role {
+        margin-top: 32px;
+
+        font-size: 12px;
+
+        line-height: 1.6;
+
+        letter-spacing: 2px;
+    }
+
+    .intro {
+        width: 100%;
+        max-width: 100%;
+
+        margin-top: 28px;
+
+        font-size: 16px;
+
+        line-height: 1.7;
+    }
+
+
+    /* =========================
+       HERO BUTTONS
+       ========================= */
+
+    .buttons {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 12px;
+
+        margin-top: 32px;
+    }
+
+    .btn {
+        width: 100%;
+
+        min-height: 54px;
+
+        justify-content: space-between;
+
+        padding: 16px 18px;
+
+        font-size: 10px;
+    }
+
+
+    /* =========================
+       HERO BOTTOM
+       ========================= */
+
+    .hero-bottom {
+        width: 100%;
+
+        margin-top: 45px;
+
+        display: block;
+
+        max-width: 100%;
+
+        font-size: 8px;
+
+        line-height: 1.8;
+
+        letter-spacing: 1.5px;
+    }
+
+
+    /* =========================
+       PROFILE
+       ========================= */
+
+    .profile-area {
+
+        /* IMPORTANT:
+           Keep profile AFTER hero text */
+        order: initial;
+
+        width: 100%;
+
+        align-items: center;
+
+        justify-content: center;
+    }
+
+    .profile-frame {
+        width: min(100%, 300px);
+        height: auto;
+
+        aspect-ratio: 300 / 385;
+
+        padding: 7px;
+    }
+
+    .profile-label {
+        margin-top: 22px;
+        margin-bottom: 22px;
+
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+
+    /* =========================
+       TERMINAL CARD
+       ========================= */
+
+    .terminal-card {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .terminal-header {
+        height: 42px;
+
+        padding: 0 12px;
+
+        gap: 12px;
+
+        font-size: 9px;
+    }
+
+    .terminal-body {
+        padding: 5px 10px 8px;
+    }
+
+    .terminal-row {
+        min-height: 44px;
+
+        grid-template-columns: 16px 62px minmax(0, 1fr);
+
+        gap: 4px;
+
+        font-size: 9px;
+    }
+
+    .terminal-row .value {
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+
+    /* =========================
+       GENERAL SECTIONS
+       ========================= */
+
+    .about-section,
+    .tech-section,
+    .projects-section,
+    .experience-section,
+    .contact-section {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .navbar {
+        padding: 0 14px;
+    }
+
+    .logo img {
+        width: 76px;
+    }
+
+    .theme-toggle {
+        width: 38px;
+        height: 38px;
+
+        margin-right: 8px;
+    }
+
+    .menu-btn {
+        width: 40px;
+        height: 40px;
+
+        font-size: 22px;
+    }
+
+    nav {
+        top: 74px;
+
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .hero {
+        padding-left: 18px;
+        padding-right: 18px;
+        padding-top: 48px;
+
+        gap: 48px;
+    }
+
+    .location {
+        font-size: 8px;
+        letter-spacing: 1.2px;
+    }
+
+    h1 {
+        font-size: clamp(55px, 17vw, 78px);
+
+        letter-spacing: -4px;
+    }
+
+    .role {
+        font-size: 10px;
+        letter-spacing: 1.5px;
+    }
+
+    .intro {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .profile-frame {
+        width: min(100%, 285px);
+    }
+
+    .terminal-row {
+        grid-template-columns: 15px 58px minmax(0, 1fr);
+
+        font-size: 8.5px;
+    }
+
+    .terminal-header {
+        font-size: 8px;
     }
 
 }
@@ -752,69 +1151,6 @@ body.light-mode .honors-panel {
 
     .education-degree {
         font-size: 17px;
-    }
-
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 600px) {
-
-    .education-section {
-        padding: 65px 15px;
-    }
-
-    .education-header {
-        gap: 8px;
-    }
-
-    .education-header h2 {
-        font-size: 31px;
-
-        letter-spacing: -1.5px;
-    }
-
-    .education-main {
-        flex-direction: column;
-
-        gap: 12px;
-
-        padding: 25px 0 30px;
-    }
-
-    .education-school h3 {
-        font-size: 27px;
-
-        letter-spacing: -1px;
-    }
-
-    .education-degree {
-        font-size: 15px;
-    }
-
-    .education-years {
-        padding-top: 0;
-
-        font-size: 8px;
-    }
-
-    .honors-header {
-        padding: 11px 15px;
-    }
-
-    .honor-item {
-        padding: 20px 15px 22px;
-    }
-
-    .honor-item h4 {
-        font-size: 13px;
-    }
-
-    .honor-item p {
-        font-size: 9px;
     }
 
 }
@@ -2218,56 +2554,6 @@ body.light-mode .honors-panel {
     }
 }
 
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 600px) {
-
-    .projects-section {
-        padding: 65px 15px;
-    }
-
-    .projects-header {
-        align-items: flex-start;
-    }
-
-    .projects-back {
-        display: none;
-    }
-
-    .projects-header h2 {
-        font-size: 32px;
-    }
-
-    .project-image {
-        height: 210px;
-    }
-
-    .project-content {
-        padding: 14px 15px 0;
-    }
-
-    .project-meta {
-        flex-direction: column;
-        gap: 8px;
-    }
-
-    .project-status {
-        align-self: flex-start;
-    }
-
-    .project-content h3 {
-        font-size: 13px;
-    }
-
-    .project-content p {
-        font-size: 9px;
-    }
-}
-
-
 /* =========================================================
    EXPERIENCE — EXPERIENCE LOG
    ========================================================= */
@@ -2710,84 +2996,6 @@ body.light-mode .honors-panel {
 }
 
 
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 600px) {
-
-    .experience-section {
-        padding: 65px 15px;
-    }
-
-    .experience-header {
-        margin-bottom: 30px;
-
-        padding-left: 12px;
-    }
-
-    .experience-header h2 {
-        font-size: 32px;
-    }
-
-    .experience-terminal-header {
-        height: 38px;
-    }
-
-    .terminal-path {
-        margin-left: 14px;
-
-        font-size: 8px;
-    }
-
-    .terminal-count {
-        display: none;
-    }
-
-    .experience-item {
-        padding: 22px 18px;
-    }
-
-    .experience-title-row {
-        flex-direction: column;
-
-        gap: 12px;
-    }
-
-    .experience-title h3 {
-        font-size: 15px;
-    }
-
-    .experience-date {
-        font-size: 9px;
-    }
-
-    .experience-description {
-        margin-top: 18px;
-
-        padding-left: 0;
-
-        gap: 12px;
-    }
-
-    .experience-line {
-        grid-template-columns: 15px 1fr;
-    }
-
-    .experience-line p {
-        font-size: 10px;
-    }
-
-    .experience-tech {
-        padding-left: 0;
-    }
-
-    .experience-footer {
-        min-height: 60px;
-    }
-
-}
-
 
 /* =========================================================
    CONTACT
@@ -3208,188 +3416,4 @@ body.light-mode .honors-panel {
         padding-right: 25px;
     }
 
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 600px) {
-
-    .contact-section {
-        margin-top: 50px;
-    }
-
-    .contact-main {
-        padding: 60px 18px;
-    }
-
-    .contact-intro h2 {
-        font-size: 55px;
-
-        letter-spacing: -3px;
-    }
-
-    .contact-description {
-        max-width: 310px;
-
-        font-size: 10px;
-    }
-
-    .contact-links {
-        gap: 18px;
-    }
-
-    .contact-link {
-        font-size: 8px;
-    }
-
-    .contact-form-wrapper {
-        padding: 16px;
-    }
-
-    .contact-field input {
-        height: 38px;
-    }
-
-    .contact-field textarea {
-        min-height: 110px;
-    }
-
-    .contact-submit {
-        height: 38px;
-    }
-
-    .footer-top {
-        flex-direction: column;
-
-        align-items: flex-start;
-
-        padding: 28px 18px;
-
-        gap: 25px;
-    }
-
-    .footer-socials {
-        gap: 18px;
-    }
-
-    .footer-bottom {
-        padding: 14px 18px;
-
-        gap: 15px;
-
-        font-size: 6px;
-    }
-
-}
-
-
-/* FOOTER */
-
-footer {
-    border-top: 1px solid var(--line);
-
-    padding: 30px 5vw;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    color: #555b63;
-
-    font-family: "DM Mono", monospace;
-
-    font-size: 9px;
-
-    letter-spacing: 1px;
-}
-
-
-/* MOBILE */
-
-@media (max-width: 900px) {
-
-    nav {
-        display: none;
-    }
-
-    .menu-btn {
-        display: block;
-    }
-
-    .hero {
-        grid-template-columns: 1fr;
-
-        padding-top: 60px;
-    }
-
-    .profile-area {
-        order: -1;
-
-        align-items: flex-start;
-    }
-
-    .profile-frame {
-        width: 260px;
-    }
-
-    h1 {
-        font-size: clamp(65px, 18vw, 120px);
-
-        letter-spacing: -5px;
-    }
-
-    .role {
-        font-size: 14px;
-
-        letter-spacing: 2px;
-    }
-
-    .intro {
-        font-size: 17px;
-    }
-
-    .buttons {
-        flex-wrap: wrap;
-    }
-
-    .hero-bottom {
-        flex-direction: column;
-
-        gap: 20px;
-    }
-
-    .section {
-        grid-template-columns: 1fr;
-
-        gap: 40px;
-
-        padding: 100px 5vw;
-    }
-
-    .skills-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .project {
-        grid-template-columns: 1fr;
-    }
-
-    .experience-item {
-        grid-template-columns: 1fr;
-
-        gap: 15px;
-    }
-
-    .contact {
-        padding: 100px 5vw;
-    }
-
-    footer {
-        flex-direction: column;
-
-        gap: 15px;
-    }
 }

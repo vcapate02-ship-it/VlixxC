@@ -196,3 +196,80 @@ ${cleanMessage}
         });
     }
 };
+
+/* =========================================================
+   MOBILE NAVIGATION
+   ========================================================= */
+
+const mobileMenuButton = document.getElementById("menuBtn");
+const mobileNav = document.querySelector("nav");
+
+if (mobileMenuButton && mobileNav) {
+
+    mobileMenuButton.addEventListener("click", () => {
+
+        const isOpen = mobileNav.classList.toggle("show");
+
+        mobileMenuButton.setAttribute(
+            "aria-expanded",
+            String(isOpen)
+        );
+
+        mobileMenuButton.setAttribute(
+            "aria-label",
+            isOpen
+                ? "Close navigation menu"
+                : "Open navigation menu"
+        );
+
+        mobileMenuButton.textContent = isOpen ? "×" : "☰";
+    });
+
+
+    /* Close menu after clicking a link */
+
+    mobileNav.querySelectorAll("a").forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            mobileNav.classList.remove("show");
+
+            mobileMenuButton.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            mobileMenuButton.setAttribute(
+                "aria-label",
+                "Open navigation menu"
+            );
+
+            mobileMenuButton.textContent = "☰";
+        });
+
+    });
+
+
+    /* Reset menu when returning to desktop */
+
+    window.addEventListener("resize", () => {
+
+        if (window.innerWidth > 900) {
+
+            mobileNav.classList.remove("show");
+
+            mobileMenuButton.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            mobileMenuButton.setAttribute(
+                "aria-label",
+                "Open navigation menu"
+            );
+
+            mobileMenuButton.textContent = "☰";
+        }
+
+    });
+}
